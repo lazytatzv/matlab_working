@@ -1,0 +1,18 @@
+services:
+  matlab:
+    image: mathworks/matlab:r2025a
+
+    command: -browser
+    shm_size: 4G
+
+    volumes:
+      - ./matlab_home/Documents/MATLAB:/home/matlab/Documents/MATLAB
+    ports:
+      - "8888:8888"
+
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 8G
