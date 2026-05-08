@@ -45,3 +45,9 @@ docker compose down
 ## 動作要件・リソース制限
 * Docker および Docker Compose がインストールされていること。
 * メモリ制限として 8GB (`memory: 8G`) 、共有メモリとして 4GB (`shm_size: 4G`) が `compose.yaml` にて設定されています。
+
+## 注意
+
+MP4出力ができなかった
+
+AVIで出してffmpeg変換推奨
