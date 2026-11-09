@@ -6,11 +6,20 @@ Dockerを用いたMATLAB (R2025a) の開発・実行環境です。Webブラウ�
 
 ### 1. コンテナの起動
 
-以下のコマンドを実行して、MATLABのコンテナをバックグラウンドで起動します。
+以下のコマンドを実行して、MATLABのコンテナをバックグラウンドで起動します（初回または `Dockerfile` 更新時はビルドが行われます）。
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
+（2回目以降は `docker compose up -d` または `make up` で起動できます）
+
+### 同梱・永続化されているToolbox / 設定
+`Dockerfile` にて `mpm` (MathWorks Package Manager) を用いて以下のToolboxをプリインストールしています：
+- `Statistics_and_Machine_Learning_Toolbox`
+- `Deep_Learning_Toolbox`
+
+新たにToolboxを追加したい場合は、`Dockerfile` の `ADDITIONAL_PRODUCTS` に追記して `docker compose up -d --build`（または `make build`）を実行してください。
+また、ログイン情報や設定（`/home/matlab/.matlab`, `/home/matlab/.MathWorks`）もDockerボリュームに永続化されるため、`docker compose down` しても消えません。
 
 ### 2. MATLABへのアクセス
 

@@ -1,12 +1,17 @@
 services:
   matlab:
-    image: mathworks/matlab:r2025a
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: matlab-custom:r2025a
 
     command: -browser
     shm_size: 4G
 
     volumes:
       - ./matlab_home/Documents/MATLAB:/home/matlab/Documents/MATLAB
+      - matlab_pref:/home/matlab/.matlab
+      - mathworks_data:/home/matlab/.MathWorks
     ports:
       - "8888:8888"
 
@@ -16,3 +21,7 @@ services:
       resources:
         limits:
           memory: 8G
+
+volumes:
+  matlab_pref:
+  mathworks_data:
